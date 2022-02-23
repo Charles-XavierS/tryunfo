@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Selector extends React.Component {
   render() {
-    const { value, change } = this.props;
+    const { value, onInputChange } = this.props;
 
     return (
       <label htmlFor="rarity">
@@ -11,7 +11,7 @@ class Selector extends React.Component {
         <select
           name="rarity"
           value={ value }
-          onChange={ change }
+          onChange={ onInputChange }
           data-testid="rare-input"
         >
           <option>normal</option>
@@ -25,7 +25,7 @@ class Selector extends React.Component {
 
 Selector.propTypes = {
   value: PropTypes.string,
-  change: PropTypes.func,
+  onInputChange: PropTypes.func,
 }.isRequired;
 
 export default Selector;
