@@ -5,9 +5,17 @@ import Selector from './Selector';
 
 class Form extends React.Component {
   render() {
-    const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
-      cardImage, cardRare, cardTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick } = this.props;
+    const { cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      isSaveButtonDisabled,
+      onInputChange,
+      onSaveButtonClick } = this.props;
 
     return (
       <form>
@@ -34,6 +42,8 @@ class Form extends React.Component {
           name="attr1"
           value={ cardAttr1 }
           onInputChange={ onInputChange }
+          min="0"
+          max="90"
         />
 
         <Inputs
@@ -42,6 +52,8 @@ class Form extends React.Component {
           name="attr2"
           value={ cardAttr2 }
           onInputChange={ onInputChange }
+          min="0"
+          max="90"
         />
 
         <Inputs
@@ -50,6 +62,8 @@ class Form extends React.Component {
           name="attr3"
           value={ cardAttr3 }
           onInputChange={ onInputChange }
+          min="0"
+          max="90"
         />
 
         <Inputs
