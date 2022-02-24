@@ -67,6 +67,10 @@ class App extends React.Component {
       trunfo,
     };
 
+    if (trunfo) {
+      this.setState({ hasTrunfo: true });
+    }
+
     this.setState((prevState) => ({
       savedCards: [...prevState.savedCards, savedCards],
     }), () => this.setState({
@@ -79,6 +83,7 @@ class App extends React.Component {
       rare: 'normal',
       trunfo: false,
       isSaveButtonDisabled: true,
+      hasTrunfo: 'false',
     }));
   }
 
@@ -91,7 +96,8 @@ class App extends React.Component {
       image,
       rare,
       trunfo,
-      isSaveButtonDisabled } = this.state;
+      isSaveButtonDisabled,
+      hasTrunfo } = this.state;
 
     return (
       <main>
@@ -109,6 +115,7 @@ class App extends React.Component {
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.saveButton }
+            hasTrunfo={ hasTrunfo }
           />
         </section>
 
