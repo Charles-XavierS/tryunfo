@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Inputs from './Inputs';
+import InputsNum from './InputsNum';
+import InputsCheck from './InputCheck';
 import Selector from './Selector';
 
 class Form extends React.Component {
@@ -16,6 +19,9 @@ class Form extends React.Component {
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick } = this.props;
+
+    // const min = '0';
+    // const max = '90';
 
     return (
       <form>
@@ -36,34 +42,25 @@ class Form extends React.Component {
           onInputChange={ onInputChange }
         />
 
-        <Inputs
+        <InputsNum
           nameLabel="Atributo 1"
-          type="number"
           name="attr1"
           value={ cardAttr1 }
           onInputChange={ onInputChange }
-          min="0"
-          max="90"
         />
 
-        <Inputs
+        <InputsNum
           nameLabel="Atributo 2"
-          type="number"
           name="attr2"
           value={ cardAttr2 }
           onInputChange={ onInputChange }
-          min="0"
-          max="90"
         />
 
-        <Inputs
+        <InputsNum
           nameLabel="Atributo 3"
-          type="number"
           name="attr3"
           value={ cardAttr3 }
           onInputChange={ onInputChange }
-          min="0"
-          max="90"
         />
 
         <Inputs
@@ -79,16 +76,12 @@ class Form extends React.Component {
           onInputChange={ onInputChange }
         />
 
-        <label htmlFor="trunfo">
-          Super Trybe Trunfo
-          <input
-            type="checkbox"
-            name="trunfo"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
+        <InputsCheck
+          nameLabel="Super Trybe Trunfo"
+          name="trunfo"
+          check={ cardTrunfo }
+          onInputChange={ onInputChange }
+        />
 
         <button
           type="submit"
