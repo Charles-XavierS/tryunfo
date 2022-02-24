@@ -14,9 +14,9 @@ class Selector extends React.Component {
           onChange={ onInputChange }
           data-testid="rare-input"
         >
-          <option>normal</option>
-          <option>raro</option>
-          <option>muito raro</option>
+          <option value="normal">normal</option>
+          <option value="raro">raro</option>
+          <option value="muito raro">muito raro</option>
         </select>
       </label>
     );

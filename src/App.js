@@ -12,20 +12,45 @@ class App extends React.Component {
       attr2: 0,
       attr3: 0,
       image: '',
-      rare: '',
+      rare: 'normal',
       trunfo: false,
+      isSaveButtonDisabled: true,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.isSaveButtonDisabled = this.isSaveButtonDisabled.bind(this);
   }
 
-  onInputChange = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+  onInputChange({ target }) {
+    const { name, type } = target;
+    const value = type === 'checkbox' ? target.checked : target.value;
+    this.setState(
+      (preventState) => ({
+        ...preventState,
+        [name]: value,
+      }),
+      () => this.isSaveButtonDisabled(),
+    );
+  }
 
-    this.setState({
-      [name]: value,
-    });
+  isSaveButtonDisabled() {
+    const { name, description, image, rare,
+      attr1, attr2, attr3 } = this.state;
+
+    this.setState({ isSaveButtonDisabled: true });
+
+    const max = 90;
+    const min = 0;
+    const total = 210;
+    const sumAttrs = Number(attr1) + Number(attr2) + Number(attr3);
+
+    if (
+      name && description && image && rare
+      && sumAttrs <= total
+      && min <= attr1 && attr1 <= max
+      && min <= attr2 && attr2 <= max
+      && min <= attr3 && attr3 <= max
+    ) this.setState({ isSaveButtonDisabled: false });
   }
 
   render() {
@@ -36,7 +61,8 @@ class App extends React.Component {
       attr3,
       image,
       rare,
-      trunfo } = this.state;
+      trunfo,
+      isSaveButtonDisabled } = this.state;
 
     return (
       <main>
@@ -51,6 +77,7 @@ class App extends React.Component {
             cardImage={ image }
             cardRare={ rare }
             cardTrunfo={ trunfo }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onInputChange }
           />
         </section>
