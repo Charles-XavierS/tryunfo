@@ -32,6 +32,16 @@ class App extends React.Component {
     }, () => this.isSaveButtonDisabled());
   }
 
+  removeSavedCard = (name) => {
+    const { savedCards } = this.state;
+    const remove = savedCards.find((cards) => cards.name === name);
+    const isTrunfo = remove.trunfo;
+    if (isTrunfo) {
+      this.setState({ hasTrunfo: false });
+    }
+    this.setState({ savedCards: savedCards.filter((cards) => cards.name !== name) });
+  }
+
   isSaveButtonDisabled() {
     const { name, description, image, rare,
       attr1, attr2, attr3 } = this.state;
@@ -131,19 +141,27 @@ class App extends React.Component {
           cardTrunfo={ trunfo }
         />
 
-        <section>
-          { savedCards.map((cards) => (<Card
-            key={ cards.name }
-            cardName={ cards.name }
-            cardDescription={ cards.description }
-            cardAttr1={ cards.attr1 }
-            cardAttr2={ cards.attr2 }
-            cardAttr3={ cards.attr3 }
-            cardImage={ cards.image }
-            cardRare={ cards.rare }
-            cardTrunfo={ cards.trunfo }
-          />))}
-        </section>
+        { savedCards.map((cards) => (
+          <>
+            <Card
+              key={ cards.name }
+              cardName={ cards.name }
+              cardDescription={ cards.description }
+              cardAttr1={ cards.attr1 }
+              cardAttr2={ cards.attr2 }
+              cardAttr3={ cards.attr3 }
+              cardImage={ cards.image }
+              cardRare={ cards.rare }
+              cardTrunfo={ cards.trunfo }
+            />
+            <button
+              type="button"
+              data-testid="delete-button"
+              onClick={ () => this.removeSavedCard(cards.name) }
+            >
+              Excluir
+            </button>
+          </>))}
 
       </main>
     );
