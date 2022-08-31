@@ -2,6 +2,8 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 
+import './components/App.css';
+
 class App extends React.Component {
   constructor() {
     super();
@@ -29,7 +31,7 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
-    }, () => this.isSaveButtonDisabled());
+    }, this.isSaveButtonDisabled);
   }
 
   removeSavedCard = (name) => {
@@ -112,56 +114,69 @@ class App extends React.Component {
 
     return (
       <main>
+        <section className="main-section">
 
-        <section>
-          <Form
-            cardName={ name }
-            cardDescription={ description }
-            cardAttr1={ attr1 }
-            cardAttr2={ attr2 }
-            cardAttr3={ attr3 }
-            cardImage={ image }
-            cardRare={ rare }
-            cardTrunfo={ trunfo }
-            isSaveButtonDisabled={ isSaveButtonDisabled }
-            onInputChange={ this.onInputChange }
-            onSaveButtonClick={ this.saveButton }
-            hasTrunfo={ hasTrunfo }
-          />
+          <div className="form">
+            <Form
+              cardName={ name }
+              cardDescription={ description }
+              cardAttr1={ attr1 }
+              cardAttr2={ attr2 }
+              cardAttr3={ attr3 }
+              cardImage={ image }
+              cardRare={ rare }
+              cardTrunfo={ trunfo }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
+              onInputChange={ this.onInputChange }
+              onSaveButtonClick={ this.saveButton }
+              hasTrunfo={ hasTrunfo }
+            />
+
+          </div>
+
+          <div className="card">
+
+            <Card
+              cardName={ name }
+              cardDescription={ description }
+              cardAttr1={ attr1 }
+              cardAttr2={ attr2 }
+              cardAttr3={ attr3 }
+              cardImage={ image }
+              cardRare={ rare }
+              cardTrunfo={ trunfo }
+            />
+
+          </div>
+
         </section>
 
-        <Card
-          cardName={ name }
-          cardDescription={ description }
-          cardAttr1={ attr1 }
-          cardAttr2={ attr2 }
-          cardAttr3={ attr3 }
-          cardImage={ image }
-          cardRare={ rare }
-          cardTrunfo={ trunfo }
-        />
+        <section className="saved-cards">
 
-        { savedCards.map((cards) => (
-          <>
-            <Card
-              key={ cards.name }
-              cardName={ cards.name }
-              cardDescription={ cards.description }
-              cardAttr1={ cards.attr1 }
-              cardAttr2={ cards.attr2 }
-              cardAttr3={ cards.attr3 }
-              cardImage={ cards.image }
-              cardRare={ cards.rare }
-              cardTrunfo={ cards.trunfo }
-            />
-            <button
-              type="button"
-              data-testid="delete-button"
-              onClick={ () => this.removeSavedCard(cards.name) }
-            >
-              Excluir
-            </button>
-          </>))}
+          { savedCards.map((cards) => (
+            <div key={ cards.name } className="card">
+              <Card
+                cardName={ cards.name }
+                cardDescription={ cards.description }
+                cardAttr1={ cards.attr1 }
+                cardAttr2={ cards.attr2 }
+                cardAttr3={ cards.attr3 }
+                cardImage={ cards.image }
+                cardRare={ cards.rare }
+                cardTrunfo={ cards.trunfo }
+              />
+              <button
+                type="button"
+                className="removeBtn"
+                data-testid="delete-button"
+                onClick={ () => this.removeSavedCard(cards.name) }
+              >
+                Excluir
+              </button>
+
+            </div>))}
+
+        </section>
 
       </main>
     );

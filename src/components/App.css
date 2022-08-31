@@ -1,0 +1,55 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-section {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
+
+.form form {
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.card {
+  align-self: center;
+  background-color: #095543;
+  border: 1px solid wheat;
+  border-radius: 15px;
+  box-shadow: 0 0 0.5em wheat;
+  display: flex;
+  flex-direction: column;
+  height: 530px;
+  padding: 0 30px;
+  width: 300px;
+}
+
+.card-description {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 10px;
+  width: auto;
+}
+
+.attrs {
+  flex-direction: column;
+  font-size: small;
+}
+
+.saved-cards {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .removeBtn {
+
+} */
